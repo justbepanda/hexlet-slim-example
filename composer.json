@@ -1,0 +1,15 @@
+{
+    "name": "mof/hexlet-slim-example",
+    "autoload": {
+        "psr-4": {
+            "Mof\\HexletSlimExample\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "justbepanda",
+            "email": "justbepanda@gmail.com"
+        }
+    ],
+    "require": {}
+}
