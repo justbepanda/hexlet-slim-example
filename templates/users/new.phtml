@@ -1,0 +1,17 @@
+<?php include_once __DIR__ . '/../include/header.php'?>
+<h1>New user</h1>
+<form action="/users" method="post">
+    <label>Nickname
+        <input type="text" name="user[nickname]" value="<?= htmlspecialchars($user['nickname']) ?>">
+    </label>
+    <?php if (isset($errors['nickname'])): ?>
+        <div><?= $errors['nickname'] ?></div>
+    <?php endif ?>
+    <label>Email
+        <input type="email" name="user[email]" value="<?= htmlspecialchars($user['email']) ?>">
+    </label>
+    <?php if (isset($errors['email'])): ?>
+        <div><?= $errors['email'] ?></div>
+    <?php endif ?>
+    <input type="submit" value="Sign Up">
+</form>

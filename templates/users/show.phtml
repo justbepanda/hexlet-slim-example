@@ -1,0 +1,14 @@
+<?php include_once __DIR__ . '/../include/header.php'?>
+<table>
+    <tr>
+        <td>User ID: <?= $id; ?></td>
+    </tr>
+    <tr>
+        <td>Nickname: <?= $nickname; ?></a></td>
+    </tr>
+    <tr>
+        <td>Email: <?= $email; ?></a></td>
+    </tr>
+</table>
+
+<a href="/users/<?= $id ?>/edit">Редактировать пользователя</a>

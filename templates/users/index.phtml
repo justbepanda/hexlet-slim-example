@@ -1,0 +1,53 @@
+<?php include_once __DIR__ . '/../include/header.php' ?>
+
+Поиск:
+<form>
+    <input type="search" name="nickname" value="<?= $searchByFirstName ?>">
+    <input type="submit">
+</form>
+
+
+<?php if ($_SESSION['login'] === 1): ?>
+
+    <h1>Hello, <?= $_SESSION['nickName']; ?></h1>
+    <form action="/session" method="post">
+        <input type="hidden" name="_METHOD" value="DELETE">
+        <div>
+            <button type="submit">Sign out</button>
+        </div>
+    </form>
+    <table>
+        <?php
+        foreach ($users as $user):
+            ?>
+            <tr>
+                <td></td>
+                <td style="vertical-align: top"><a
+                            href="/users/<?= htmlspecialchars($user['id']); ?>"><?= htmlspecialchars($user['nickname']) ?></a>
+                </td>
+                <td style="vertical-align: top">
+                    <form action="/users/<?= $user['id'] ?>" method="post">
+                        <input type="hidden" name="_METHOD" value="DELETE">
+                        <input type="submit" value="Remove">
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+<?php else: ?>
+    <h1>Sign In</h1>
+    <form action="/session" method="post">
+        <div>
+            <label>Email
+                <input type="text" name="user[email]" value="<?= htmlspecialchars($user['email']) ?>">
+            </label>
+            <?php if (isset($errors['email'])): ?>
+                <div><?= $errors['email'] ?></div>
+            <?php endif ?>
+        </div>
+        <div>
+            <button type="submit">Sign In</button>
+        </div>
+    </form>
+<?php endif; ?>
