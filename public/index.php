@@ -3,6 +3,7 @@
 namespace Mof\HexletSlimExample;
 
 // sudo kill -9 `sudo lsof -t -i:8080`
+// php -S localhost:8080 -t public public/index.php
 // Подключение автозагрузки через composer
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -43,10 +44,11 @@ $app->get('/users', function ($request, $response) {
     $usersByName = collect($users->all())->keyBy('nickname');
     if ($searchByNickname) {
         $filteredUsers = $usersByName->filter(fn($value, $key) => s($key)->ignoreCase()->startsWith($searchByNickname));
-        $params = ['users' => $filteredUsers, '$searchByNickname' => $searchByNickname];
+        $params = ['users' => $filteredUsers, 'searchByNickname' => $searchByNickname];
     } else {
-        $params = ['users' => $usersByName, '$searchByNickname' => ''];
+        $params = ['users' => $usersByName, 'searchByNickname' => ''];
     }
+    $params['user'] = ['email' => '', 'nickname' => ''];
     $messages = $this->get('flash')->getMessages();
     $params['flash'] = $messages;
 
@@ -59,7 +61,7 @@ $app->get('/users/new', function ($request, $response) {
         'user' => ['nickname' => '', 'email' => ''],
         'errors' => []
     ];
-    $this->get('flash')->addMessage('success', 'Пользователь добавлен');
+
     return $this->get('renderer')->render($response, 'users/new.phtml', $params);
 })->setName('user.create');
 
@@ -89,6 +91,7 @@ $app->post('/users', function ($request, $response) use ($router) {
         $newUsers = $users->save($user);
         $encodedNewUsers = json_encode($newUsers);
         $url = $router->urlFor('users.index');
+        $this->get('flash')->addMessage('success', 'Пользователь добавлен');
         return $response->withHeader('Set-Cookie', "users={$encodedNewUsers}")->withRedirect($url);
     }
 

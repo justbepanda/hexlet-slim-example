@@ -2,12 +2,12 @@
 
 Поиск:
 <form>
-    <input type="search" name="nickname" value="<?= $searchByFirstName ?>">
+    <input type="search" name="nickname" value="<?= $searchByNickname ?>">
     <input type="submit">
 </form>
 
 
-<?php if ($_SESSION['login'] === 1): ?>
+<?php if (isset($_SESSION['login']) && $_SESSION['login'] === 1): ?>
 
     <h1>Hello, <?= $_SESSION['nickName']; ?></h1>
     <form action="/session" method="post">

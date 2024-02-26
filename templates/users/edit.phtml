@@ -2,17 +2,17 @@
 <h1>Edit user</h1>
 <form action="/users/<?= htmlspecialchars($user['id']) ?>" method="post">
     <input type="hidden" name="_METHOD" value="PATCH">
-    <label>Nickname
+    <div><label>Nickname
         <input type="text" name="user[nickname]" value="<?= htmlspecialchars($user['nickname']) ?>">
     </label>
     <?php if (isset($errors['nickname'])): ?>
         <div><?= $errors['nickname'] ?></div>
-    <?php endif ?>
-    <label>Email
+    <?php endif ?></div>
+    <div><label>Email
         <input type="email" name="user[email]" value="<?= htmlspecialchars($user['email']) ?>">
     </label>
     <?php if (isset($errors['email'])): ?>
         <div><?= $errors['email'] ?></div>
-    <?php endif ?>
+    <?php endif ?></div>
     <input type="submit" value="Update">
 </form>
