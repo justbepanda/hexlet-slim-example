@@ -48,7 +48,7 @@ $app->get('/users', function ($request, $response) {
     } else {
         $params = ['users' => $usersByName, 'searchByNickname' => ''];
     }
-    $params['user'] = ['email' => '', 'nickname' => ''];
+    $params['user'] = ['email' => '', 'nickname' => '', 'id' => ''];
     $messages = $this->get('flash')->getMessages();
     $params['flash'] = $messages;
 
