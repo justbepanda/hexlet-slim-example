@@ -28,7 +28,7 @@ class UserRepository
 
     public function save(array $item)
     {
-        if (!$item['id']) {
+        if (!isset($item['id'])) {
             $item['id'] = uniqid();
         }
         $this->users[$item['id']] = $item;
