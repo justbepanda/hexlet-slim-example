@@ -3,11 +3,14 @@
 <a href="/users/new">Добавить пользователя</a>
     <div style="color:red; font-weight: bold">
 <?php 
-foreach ($flash as $result):
-    foreach ($result as $message):
-        echo $message;
+if(count($flash) > 0) {
+    foreach ($flash as $result):
+        foreach ($result as $message):
+            echo $message;
+        endforeach;
     endforeach;
-endforeach;
+}
+
 
 ?>
         </div>

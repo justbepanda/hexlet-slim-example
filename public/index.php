@@ -1,7 +1,7 @@
 <?php
 
 namespace Mof\HexletSlimExample;
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+
 // sudo kill -9 `sudo lsof -t -i:8080`
 // Подключение автозагрузки через composer
 require __DIR__ . '/../vendor/autoload.php';
